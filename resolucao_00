@@ -1,0 +1,71 @@
+'''
+Resolvendo exercícios propostos pelo professor
+Arquivo 00-desafios
+'''
+
+# desafio 1 -----------------------------------------------------------------------------------------
+
+# https://docs.python.org/3/library/random.html#functions-for-integers
+
+from random import randint
+
+valor_aleatorio = randint(1, 101)
+
+jogo_concluido = False
+tentativas = 0
+
+while jogo_concluido is not True:
+    numero_usuario = int(input('Insira um numero: '))
+    if numero_usuario and numero_usuario in list(range(1, 101)):
+        if numero_usuario < valor_aleatorio:
+            print('O número sorteado é maior')
+        elif numero_usuario > valor_aleatorio:
+            print('O número sorteado é menor')
+        else:
+            print('Parabéns! Você acertou o número sorteado')
+    else:
+        print('Insira um número entre 0 e 100.')
+    tentativas += 1
+    jogo_concluido = input('Deseja continuar? Responda S ou N.').upper()
+    if jogo_concluido == 'S':
+        continue
+    else:
+        break
+print(f'O número sorteado foi {valor_aleatorio}.')    
+print(f'O número de tentativas foi de: {tentativas}.')
+
+# desafio 2 -----------------------------------------------------------------------------------------
+from random import randint
+
+while True:
+    dado1 = randint(1, 7)
+    dado2 = randint(1, 7)
+    somatorio = dado1 + dado2
+    num_usuario = int(input('Qual é o valor da soma dos dados sorteados? '))
+    
+    if (num_usuario >= 2) or (num_usuario <= 12):
+        if (num_usuario > somatorio) or (num_usuario < somatorio):
+            print(f'Você errou. A soma dos dados é {somatorio}.\
+                O valor do primeiro dado é {dado1} e o do segundo é {dado2}.')
+        else:
+            print(f'Parabéns! Você acertou a soma dos dados!\
+                O valor do primeiro dado é {dado1} e o do segundo é {dado2}.')
+    else:
+        print('O campo está preenchido incorretamente. Insira um número válido.')
+
+    repetir_jogo = input('Deseja continuar o jogo? Insira S ou N.').upper()
+
+    if repetir_jogo == 'S':
+        continue
+    else:
+        break
+    
+# desafio 3 -----------------------------------------------------------------------------------------
+'''
+Duas palavras podem ser consideradas anagramas de si mesmas se 
+as letras de uma palavra podem ser realocadas para formar a 
+outra palavra. Dada uma string qualquer, desenvolva um 
+algoritmo que encontre o número de pares de substrings 
+que são anagramas.
+'''
+
