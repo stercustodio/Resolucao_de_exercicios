@@ -1,0 +1,101 @@
+'''
+Resolvendo exercícios propostos pelo professor.
+Arquivo 04-if-elif-else
+'''
+
+# Exercicio 1 ------------------------------------
+from operator import index
+
+
+numero = int(input('Insira um número: '))
+if numero % 2 == 0:
+    print('Número par')
+else:
+    print('Número ímpar')
+
+# Exercicio 2 ------------------------------------
+num1 = int(input('Insira um número: '))
+num2 = int(input('Insira um número: '))
+if num1 % num2 == 0:
+    print(f'O número {num1} é divisível pelo número {num2}.')
+else:
+    print(f'O número {num1} NÃO é divisível pelo número {num2}.')
+
+# Exercicio 3 ------------------------------------
+
+# 1 tentativa - não deu certo
+barulho = [
+    ('Britadeira', 130),
+    ('Cortador de grama', 106),
+    ('Despertador', 70),
+    ('Cômodo em silêncio', 40)
+    ]
+
+while True:
+    volume = int(input('Insira o valor dos decibéis: '))
+
+    if volume > max(barulho)[1]:
+        print(f'O volume de decibéis {volume} é superior aos decibéis gerados por: {barulho.index(max(barulho)[1])}.')
+    elif volume > min(barulho)[1]:
+        print(f'O volume de decibéis {volume} é inferior aos decibéis gerados por: {barulho.index(min(barulho)[1])}.')
+    else:
+        for i in barulho:
+            if volume == barulho[i][1]:
+                print(f'O volume de decibéis {volume} é equivalente aos decibéis gerados por: {barulho[i][0]}.')
+            else:
+                print(f'O volume de decibéis {volume} está entre os decibéis gerados por: {barulho[i][0]} e {barulho[i+1][0]}.')
+    if not volume:
+        break
+
+teste = [(2, 3), (4, 7), (8, 11), (3, 6)]
+res1 = min(teste)[0], max(teste)[0]
+res2 = min(teste)[1], max(teste)[1]
+print(res1)
+teste.index(max(teste)[0])
+
+#  fui veirficar o gabarito e lá o prof fez valor por valor O.o
+
+# 2 tentativa
+db = dict(barulho)
+classe, barulho = list(db.keys()), list(db.values())
+
+while True:
+    volume = int(input('Insira o volume de decibéis: '))
+    
+    if volume > max(barulho):
+        print(f'O volume {volume} é superior ao volume de {classe[barulho.index(max(barulho))]}.')
+    elif volume < min(barulho):
+        print(f'O volume {volume} é inferior ao volume de {classe[barulho.index(min(barulho))]}.')
+    elif volume in barulho:
+        print(f'O volume {volume} é igual ao volume de {classe[barulho.index(volume)]}')
+    else:
+        lista_intervalos = [[] for i in range(len(barulho)-1)]
+        for i, intervalo in enumerate(lista_intervalos):
+            intervalo.append(list(range(barulho[i], barulho[i+1])))
+            if volume in intervalo:
+                print(f'O volume {volume} está entre os volumes de {classe[i]} e {classe[i+1]}.')    
+            
+    if not volume:
+        break
+
+# larguei de mão
+
+# Exercicio 4 ------------------------------------
+ano = int(input('Insira o ano: '))
+if (ano % 400 == 0) or (ano % 4 == 0):
+    print(f'{ano} bissexto')
+else:
+    print(f'{ano} não é bissexto')
+
+# Exercício 5 -------------------------------------
+texto = input('texto: ').upper()
+
+if (len(texto) == 8 and 
+    texto[:2].isalpha() and
+    texto[3] == '-' and
+    texto[-4].isnumeric()):
+    print(True)
+else:
+    print(False)
+    
+
