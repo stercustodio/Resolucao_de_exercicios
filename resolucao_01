@@ -1,0 +1,113 @@
+'''
+Resolvendo exercícios propostos pelo professor.
+Arquivo 01-int-float
+'''
+
+# Exercício 1 ---------------------------------
+from math import log10
+
+def minha_funcao(num_a, num_b):
+    print(f'soma A+B:      {(num_a + num_b):10}')
+    print(f'subtracao B-A: {(num_b - num_a):10}')
+    print(f'produto A*B:   {(num_a * num_b):10}')
+    print(f'quociente A/B: {(num_a // num_b):10}')
+    print(f'resto A/B:     {(num_a % num_b):10}')
+    print(f'log 10 de A:   {(log10(num_a)):10}')
+    print(f'potência A^B:  {(num_a ** num_b):10}')
+
+minha_funcao(10, 2)
+
+# Exercício 2 ---------------------------------
+base = float(input('valor da base do triângulo: '))
+altura = float(input('valor da altura do triângulo: '))
+area = (base * altura)/2
+area
+
+# Exercício 3 ---------------------------------
+from math import sqrt
+
+def area_triangulo(a, b, c):
+    s = (a+b+c)/2
+    area = sqrt(s * (s-a) * (s-b) * (s-c))
+    return area
+area_triangulo(3,4,5)
+
+# Exercício 4---------------------------------
+peso = float(input('peso (kg): '))
+altura = float(input('altura (m): '))
+imc = peso / (altura**2)
+print(f"O IMC calculado é {imc}")
+
+# ....... explorando
+possiveis_pesos = list(range(30,80))
+altura = 1.56
+
+pesos_abaixo = []
+pesos_normal = []
+pesos_acima = []
+
+for peso in possiveis_pesos:
+    imc = peso/(altura**2)
+    if imc < 18.5:
+        pesos_abaixo.append(peso)
+    elif imc < 24.9:
+        pesos_normal.append(peso)
+    else:
+        pesos_acima.append(peso)
+
+classificação = ['abaixo do peso normal', 'peso normal', 'obesidade']
+pesos_ordenados = [pesos_abaixo, pesos_normal, pesos_acima]
+relacao = dict(zip(classificação, pesos_ordenados))
+print(relacao)
+
+# ....... dica do coleguinha
+possiveis_pesos = list(range(30,80))
+altura = 1.56
+
+relacao = dict()
+relacao['abaixo do peso'] = []
+relacao['peso normal'] = []
+relacao['acima do peso'] = []
+
+for peso in possiveis_pesos:
+    imc = peso / altura**2
+    if imc < 18.5:
+        relacao['abaixo do peso'].append(peso)
+    elif imc < 24.9:
+        relacao['peso normal'].append(peso)
+    else:
+        relacao['acima do peso'].append(peso)
+print(relacao)    
+
+# Exercício 5 ---------------------------------
+def meu_calculo(numero):
+    numero = str(numero)
+    if len(numero) == 4:
+        conta = (
+            int(numero[0]) +
+            int(numero[1]) +
+            int(numero[2]) +
+            int(numero[3])
+        )
+    else:
+        print('insira um número de 4 dígitos')
+    return conta
+
+meu_calculo(1010)
+meu_calculo(1111)
+
+# explorando - de outro modo
+def soma_das_partes(numero):
+    
+    numero = str(numero)
+
+    x = 0
+    if len(numero) == 4:
+        for i in range(len(numero)):
+            x += int(numero[i])
+    else:
+        print('Campo preenchido incorretamente.')
+
+    return x
+
+soma_das_partes(1234)
