@@ -1,0 +1,94 @@
+'''
+Resolvendo exercícios propostos pelo professor.
+Arquivo 02-listas
+'''
+# Exercício 1---------------------------------------------------
+from operator import index
+
+
+lista = ['letra', 'numero', 100, 200, [4.5, 6.7, 7.9]]
+for i, item in enumerate(lista):
+    print(f'elemento {i+1} na posição {i}: {item}, tipo: {type(item)}')
+
+# Exercício 2---------------------------------------------------
+lista2 = list(range(10, 110, 10))
+print(len(lista2))
+lista2.reverse()
+print(lista2)
+
+# Exercício 3---------------------------------------------------
+lista3 = list(range(0, 12, 2))
+print(lista3)
+print(len(lista3))
+maior_valor = max(lista3)
+menor_valor = min(lista3)
+print(
+    f'O maior valor da lista é: {maior_valor} e está na posição: {lista3.index(maior_valor)}. \
+    \nO menor valor da lista é: {menor_valor} e está na posição: {lista3.index(menor_valor)}. '
+    )
+
+# Exercício 4---------------------------------------------------
+temperatura_media = []
+lista_meses = [
+    'janeiro', 'fevereiro', 'março',
+    'abril', 'maio', 'junho',
+    'julho', 'agosto', 'setembro',
+    'outubro', 'novembro', 'dezembro'
+    ]
+
+for mes in lista_meses:
+    temp = float(input(f'Insira a temperatura média do mês de {mes}: '))
+    temperatura_media.append(temp)
+print(temperatura_media)
+media_anual = sum(temperatura_media) / len(temperatura_media)
+
+comparativo_indice = []
+comparativo_valores = []
+
+for temp in temperatura_media:
+    if temp > media_anual:
+        comparativo_indice.append(temperatura_media.index(temp))
+        comparativo_valores.append(temp)
+comparativo = dict(zip(comparativo_indice, comparativo_valores))
+print(comparativo)
+
+print(f'Meses com temperatura acima da média anual de {round(media_anual, 1)}°:\n')
+for chave, valor in comparativo.items():
+    print(f'{chave + 1} - {lista_meses[chave]} - {valor}')
+
+# Exercício 5---------------------------------------------------
+lst = [10, 20, [300, 400, [5000, 6000], 500], 30, 40]
+'''    0    1    2                             3   4
+                 0   1      2            3            '''
+lst[2][2].append(7000)
+print(lst)
+
+lst == [10, 20, [300, 400, [5000, 6000, 7000], 500], 30, 40] # prova real
+
+# Exercício 6---------------------------------------------------
+cores = ['', 'azul', 'amarelo', '', 'rosa', 'roxo', '', '']
+
+cores_nova = []
+for item in cores:
+    if item != '': # não precisava, podia ser só if item:
+        cores_nova.append(item)
+print(cores_nova)
+
+
+# de outro modo
+ervas = ['', 'hortelã', 'cominho', '', 'orégano', '', 'tomilho']
+
+vazio = ''
+while vazio in ervas:
+    ervas.remove(vazio)
+print(ervas)
+
+# Exercício 7---------------------------------------------------
+lista_str = ['1', '7', '99', '15']
+
+lista_int = list(map(int, lista_str))
+print(lista_int)
+
+lista_float = list(map(float, lista_str))
+print(lista_float)
+
