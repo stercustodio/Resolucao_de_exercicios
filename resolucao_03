@@ -1,0 +1,171 @@
+'''
+Resolvendo exercícios propostos pelo professor.
+Arquivo 03-dicts-sets
+'''
+
+# Exercício 1---------------------------------------------------
+''' 
+Um pouco de teoria de conjuntos
+Ver "Bitwise Operations on Integer Types" na documentação python
+
+União: A ∪ B          --python--> A | B   (ou)
+Interseção: A ∩ B     --python--> A & B    (e)
+Somente em X ou em Y  --python--> X ^ Y  (apenas)
+'''
+from optparse import Values
+from xml.dom.minidom import Notation
+
+
+conjunto_a = {1, 2, 3, 4}
+conjunto_b = {4, 5, 6}
+
+uniao_ab = conjunto_a | conjunto_b
+intersecao_ab = conjunto_a & conjunto_b
+somente_ab = conjunto_a ^ conjunto_b
+
+print(uniao_ab, intersecao_ab, somente_ab)
+
+turma_ingles = {
+    'João Alves dos Santos',
+    'Maria Magalhães',
+    'Antônio da Silva Ferreira',
+    'José Júnior Jarbas',
+    'Henrique da Silva Sauro',
+    'Joaquina Ferreira da Silva',
+    'Fabiana Aparecida Bianco',
+    'Marrone Gutierres',
+    'Carlos Magno Farad',
+    'Antônio da Silva Júnior Amaral'
+}
+
+turma_frances = {
+    'João Alves dos Santos',
+    'Antônio da Silva Ferreira',
+    'Fernanda Abdala Mohamed',
+    'Abner Mignon Alib',
+    'Alisson Figueiredo',
+    'Henrique da Silva Sauro',
+    'Maria Magalhães',
+    'Marrone Gutierres',
+    'Joaquina Ferreira da Silva'
+}
+
+total_alunos = turma_frances | turma_ingles
+apenas_ingles = turma_ingles - turma_frances
+apenas_frances = turma_frances - turma_ingles
+ambos_cursos = turma_ingles & turma_frances
+somente_um_curso = turma_ingles ^ turma_frances
+
+print(
+f'Total de alunos matriculados na escola: {len(total_alunos)}.\n\
+Alunos matriculados somente em inglês: {len(apenas_ingles)}.\n\
+Alunos matriculados somente em francês: {len(apenas_frances)}.\n\
+Alunos matriculados em ambos os cursos: {len(ambos_cursos)}.\n\
+Alunos matriculados somente em um dos cursos: {len(somente_um_curso)}.'
+)
+
+# Exercício 2---------------------------------------------------
+estados = {
+'AC': 'Acre',
+'AL': 'Alagoas',
+'AP': 'Amapá',
+'AM': 'Amazonas',
+'BA': 'Bahia',
+'CE': 'Ceará',
+'DF': 'Distrito Federal',
+'ES': 'Espírito Santo',
+'GO': 'Goiás',
+'MA': 'Maranhão',
+'MT': 'Mato Grosso',
+'MS': 'Mato Grosso do Sul',
+'MG': 'Minas Gerais',
+'PA': 'Pará',
+'PB': 'Paraíba',
+'PR': 'Paraná',
+'PE': 'Pernambuco',
+'PI': 'Piauí',
+'RJ': 'Rio de Janeiro',
+'RN': 'Rio Grande do Norte',
+'RS': 'Rio Grande do Sul',
+'RR': 'Roraima',
+'RO': 'Rondônia',
+'SC': 'Santa Catarina',
+'SP': 'São Paulo',
+'SE': 'Sergipe',
+'TO': 'Tocantins'    
+}
+
+sigla = (input('Insira a sigla de um estado brasileiro:').upper()).strip()
+
+if sigla in estados:
+    print(f'O nome completo do estado é: {estados[sigla]}.')
+else:
+    print('Preencha o campo corretamente.')
+
+# Exercício 3---------------------------------------------------
+# Ordenando dicionários
+d1 = {'matemática': 81, 'física': 83, 'química': 87}
+d2 = dict(sorted(d1.items(), key=lambda tupla: tupla[1], reverse=True))
+print(d2)
+
+''' 
+Veja:
+
+Lambda Expressions
+https://docs.python.org/3/tutorial/controlflow.html?highlight=lambda#lambda-expressions
+ 
+Lambda functions can be used wherever function objects are required.
+
+lambda parâmetro: operação
+lambda x: x + n 
+
+How to sort - Key Functions
+https://docs.python.org/3/howto/sorting.html
+
+Both list.sort() and sorted() have a key parameter to specify a function
+to be called on each list element prior to making comparisons.
+'''
+x = {'a': 7, 'b': 11, 'c': 9} # dicionário
+y = list(x.items()) # lista em que cada elemento é uma tupla
+''' 
+quero ordenar a lista referenciando pelo segundo elemento 
+da tupla. Então, tenho que usar sorted() com o parâmetro 'key' p/
+establecer qual o critério de ordenação.
+Para aplicar uma função qualquer posso usar lambda.
+'''
+y.sort(key=lambda y: y[1])
+print(y)
+
+# refazendo o exemplo
+
+notas = {'matemática': 81, 'física': 83, 'química': 87} 
+notas2 = list(notas.items()) # nao sei pq nao ta fazendo direto 
+notas2.sort(key=lambda notas2: notas2[1], reverse=True)
+notas2 = dict(notas2)
+print(notas2)
+
+# fazendo por sorted
+notas = {'matemática': 81, 'física': 83, 'química': 87} 
+notas = dict(sorted(list(notas.items()), key=lambda notas: notas[1], reverse=True))
+print(notas) # por sorted vai direto... vai saber...
+
+# Exercício 4---------------------------------------------------
+cores = {1: 'vermelho', 2:'azul', 3:'marrom'}
+v = list(map(len, list(cores.values())))
+k = list(cores.keys())
+cores_cont = dict(zip(k, v))
+print(cores_cont)
+
+# gabarito
+entrada = {1: 'vermelho', 2:'azul', 3:'marrom'}
+saida = dict()
+
+for chave, valor in entrada.items():
+    saida[chave] = len(valor)
+print(saida)
+
+# Exercício 5---------------------------------------------------
+notas = {'Theodoro': 20, 'Márcia': 50, 'Júnior': 80}
+ordem = tuple(sorted(list(notas.items()), key=lambda notas: notas[1], reverse=True))
+print(f'Nota máxima -> {ordem[0][0]}: {ordem[0][1]}\
+    \nnNota mínima -> {ordem[-1][0]}: {ordem[-1][1]}')
