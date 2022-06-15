@@ -1,0 +1,153 @@
+'''
+Resolvendo exercícios propostos pelo professor.
+Arquivo 05-laço-repetição
+'''
+
+# Exercício 1
+from statistics import mean
+
+lista = []
+numero = float(input('Digite o número: '))
+
+if not numero or numero == 0:
+    print('Insira um número diferente de zero.')
+else:
+    lista.append(numero)
+
+    while True:
+        numero = float(input('Digite o número: '))     
+        if numero == 0:
+            break
+        else:
+            lista.append(numero)
+            media = round(mean(lista), 2)
+    print(f'A média dos números é {media}.')
+    print(lista)
+
+# Exercício 2
+'''
+Converter Celsius para Fahrenheit
+Fórmulas:
+(33,8 °F - 32) * 5/9 = 1 °C
+(0 °C x 9/5) + 32 = 32 °F
+
+converter tds as temp de 0 a 100 que são múltiplos de 10
+'''
+temperaturas_celsius = list(range(0, 100, 10))
+temperaturas_fahrenheit = [(temp* 9/5 + 32) for temp in temperaturas_celsius]
+
+# Exercício 3
+'''
+0 < idade < 2: 0
+2 < idade < 3: ??? ---> 23
+3 < idade < 12: 14
+12 < idade < 65: ??? ---> 23
+65 < idade < infinito: 18
+'''
+total_ingressos = []
+print('Começando nova contagem de ingressos.\
+    \nPara encerrar insira espaço.\n')
+while True:
+    idade = input('Idade do visitante: ')
+    if idade != ' ':    
+        if int(idade) < 0:
+            tarifa = 0
+            total_ingressos.append(tarifa)
+        elif 3 <= int(idade) <= 12:
+            tarifa = 14
+            total_ingressos.append(tarifa)
+        elif int(idade) >= 65:
+            tarifa = 18
+            total_ingressos.append(tarifa)
+        else:
+            tarifa = 23
+            total_ingressos.append(tarifa)
+    else:
+        break
+    print(f'Ingressos contabilizados.\
+        \n Total a pagar: R$ {round(sum(total_ingressos))}.')
+
+# Exercício 4:
+'''
+* Fórmula do Pi
+pi/4 = somatório de k=0 até infinito de 
+       (-1)^k / (2k+1)
+
+* Instalando mpmath - biblioteca de cálculos math
+pip install mpmath
+python -m eay_install mpmath
+
+* Documentação da função somatório
+https://mpmath.org/doc/current/calculus/sums_limits.html
+mpmath.nsum(f, *intervals, **options)
+S= ∑ de "a" a "b" da f(k) ---> (a,b) intervalo do somatório
+exemplos:
+nsum(lambda n: 1/fac(n), [0, inf])
+nsum(lambda k: 1/(1+k**2), [-inf, inf])
+'''
+from mpmath import nsum, inf
+pi = 4* nsum(lambda k: (((-1)**k) / (2*k + 1)), [0, inf])
+type(pi)
+pi_str = str(pi)
+print(pi_str)
+
+for i in range(16):
+    aproximacoes = pi_str[:i]
+    if aproximacoes != '3.':
+        print(aproximacoes)
+
+# Exercício 5
+'''
+7 notas 
+melhor e pior nota eliminadas
+media das 5 restantes
+'''
+classificacao = dict()
+ordinais = ['primeiro', 'segundo', 'terceiro',
+            'quarto', 'quinto', 'sexto', 'sétimo']
+registro = 'S'
+
+while registro == 'S':
+    nome = input('Nome do(a) competidor(a): ')
+    classificacao[nome] = []
+    for ord in ordinais:
+        classificacao[nome].append(float(input(
+            f'Insira a nota dada pelo {ord} jurado: ')))
+    
+    for nome, notas in classificacao.items():
+        maxima = max(notas)
+        minima = min(notas)
+        resultado = list(notas).copy()
+        resultado.pop(notas.index(minima))
+        resultado.pop(notas.index(maxima))
+        media = round((sum(resultado) / len(resultado)), 2)
+    print(
+        f'Resultado Prévio:\n\
+        Atleta: {nome}\n\
+        Nota: {notas[0]}\n\
+        Nota: {notas[1]}\n\
+        Nota: {notas[2]}\n\
+        Nota: {notas[3]}\n\
+        Nota: {notas[4]}\n\
+        Nota: {notas[5]}\n\
+        Nota: {notas[6]}\n\
+        \nResultado final:\n\
+        Atleta: {nome}\n\
+        Melhor Nota: {maxima}\n\
+        Pior nota: {minima}\n\
+        Média {media}.'
+        )        
+    
+    registro = input('Continuar registro? S ou N?').upper()
+    if registro != 'S':
+        break
+    
+# Exercício 6
+from fractions import Fraction
+
+N = int(input('Insira um número inteiro: '))
+H = [1,]
+for i in list(range(2, N+1)):
+    H.append(Fraction(1, i))
+    print(H)
+    print(sum(H))
