@@ -1,0 +1,79 @@
+'''
+Resolvendo exercícios propostos pelo professor.
+Arquivo 06-funções
+'''
+# Exercício 1
+
+def taximetro(km_percorridos: float, R: float = 4) -> float:
+    '''A função taximetro calcula o valor da tarifa de taxi. 
+    O parâmetro km_percorridos indica o valor da distância 
+    percorrida em Km. O parâmetro R é o valor da tarifa básica.'''
+    return R + 0.25* (km_percorridos * 1000/140)
+
+taximetro(140)
+    
+# Exercício 2
+def teste_triangulo(reta1: int, reta2: int, reta3: int) -> bool:
+    '''A função teste_triangulo verifica a condição de existência
+    de um triângulo. Isto é, verifica se três segmentos de reta 
+    formam um triângulo. Para tal, é necessário que a soma de dois
+    lado seja menor que o terceiro lado. Em caso afirmativo, a função
+    retorna True, caso contrário, False. Os parâmetros reta1, reta2
+    e reta3 indicam os valores dos três segmentos de reta a serem
+    verificados.'''
+    if (reta1 + reta2 > reta3) and (reta2 + reta3 > reta1) and (reta1 + reta3 > reta2):
+        return True
+    else:
+        return False
+    
+teste_triangulo(2,3,20)
+teste_triangulo(15, 20, 30)
+
+# Exercício 3
+def reverso(numero: int) -> int:
+    '''A função reverso recebe um número inteiro como parâmetro
+    e retorna um número inteiro correspondente ao reverso do
+    número inserido.'''
+    num_str = str(numero)
+    lista = [num_str[-i] for i in range(1, len(num_str)+1)]
+    return int(''.join(lista))
+
+reverso(127)
+
+# teste
+x = 127
+xstr = str(x)
+xrev = [xstr[-i] for i in range(1, len(xstr)+1)]
+xrev_final = int(''.join(xrev))
+print(xrev_final)
+
+# Exercício 4
+def embaralha(texto: str) -> str:
+    '''A função embaralha recebe uma string como parâmetro 
+    e retorna outra string com os carateres embaralhados.'''
+    texto.upper()
+    conjunto = set(texto)
+    return ''.join(conjunto)
+
+embaralha('lagarto')
+    
+
+# teste
+texto = 'caramujo'
+texto2 = set(texto)
+texto3 = ''.join(texto2)
+print(texto3)
+
+# Exercício 5
+'''
+Quadrado mágico:
+A soma das linhas, colunas e diagonais é a mesma.
+
+Elabore uma função que identifica e mostra
+na tela todos os quadrados mágicos.
+
+Dica: produza todas as combinações possíveis
+e verifique a soma quando completar cada quadrado.
+Usar um vetor (lista) de 1 a 9 parece ser mais
+simples que usar uma matriz 3x3.
+'''
