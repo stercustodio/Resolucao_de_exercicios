@@ -1,6 +1,6 @@
 Resolucao de Exercícios
 
-Este repositório contém os enunciados e as minhas resuluções 
+Este repositório contém os enunciados e as minhas resoluções 
 de exercícios focados em linguagem de programação python.
 
 Os enunciados foram elaborados para o curso Bootcamp Código[S],
