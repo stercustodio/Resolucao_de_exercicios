@@ -1,4 +1,4 @@
-Resolucao de Exercícios ------------------------------------
+RESOLUÇÃO DE EXERCÍCIOS
 
 * Este repositório contém os enunciados e as minhas resoluções 
 de exercícios focados em linguagem de programação python.
